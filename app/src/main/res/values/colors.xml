@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_beige">#FFf7f6f2</color>
+    <color name="availability_blue">#FF007cff</color>
+    <color name="warning_red">#FFff0c18</color>
+    <color name="done_green">#FF00ca48</color>
+
+    <color name="not_active_gray">#FFcccccc</color>
+    <color name="low_priority_gray">#FF8e8e93</color>
+    <color name="h2_gray">#FF8c8b89</color>
+    <color name="task_neutral_sub_text_gray">#FFb2b2b2</color>
+    <color name="new_task_dark_gray">#FF666666</color>
 </resources>
