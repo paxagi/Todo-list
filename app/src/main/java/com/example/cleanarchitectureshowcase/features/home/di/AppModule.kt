@@ -5,6 +5,8 @@ import com.example.cleanarchitectureshowcase.features.home.data.ServerDataApi
 import com.example.cleanarchitectureshowcase.features.home.domain.BusinessLogicHelper
 import com.example.cleanarchitectureshowcase.features.home.domain.BusinessLogicHelperImpl
 import com.example.cleanarchitectureshowcase.features.home.domain.DataRepository
+import com.example.cleanarchitectureshowcase.features.home.domain.task.TasksRepositoryImpl
+import com.example.cleanarchitectureshowcase.features.home.domain.task.TasksRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,13 +35,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideBussnesLogicObject(): BusinessLogicHelper {
-        return BusinessLogicHelperImpl()
+    fun provideTaskRepository(): TasksRepository {
+        return TasksRepositoryImpl()
     }
 
     @Provides
     @Singleton
-    fun provideHomeTaskService(): HomeTaskService {
-        return HomeTaskServiceImpl()
+    fun provideBussnesLogicObject(): BusinessLogicHelper {
+        return BusinessLogicHelperImpl()
     }
 }
