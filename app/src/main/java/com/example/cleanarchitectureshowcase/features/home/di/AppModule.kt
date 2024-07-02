@@ -36,4 +36,10 @@ object AppModule {
     fun provideBussnesLogicObject(): BusinessLogicHelper {
         return BusinessLogicHelperImpl()
     }
+
+    @Provides
+    @Singleton
+    fun provideHomeTaskService(): HomeTaskService {
+        return HomeTaskServiceImpl()
+    }
 }
