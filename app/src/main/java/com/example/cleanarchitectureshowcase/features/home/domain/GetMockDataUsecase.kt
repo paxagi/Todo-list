@@ -7,9 +7,9 @@ import javax.inject.Inject
 class GetMockDataUsecase @Inject constructor(
     private val repository: DataRepository,
     private val businessLogicHelper: BusinessLogicHelper
-): CoroutinesUseCase<String, DataUI> {
+): CoroutinesUseCase<String, List<DataUI>> {
 
-    override suspend fun invoke(params: String): DataUI {
+    override suspend fun invoke(params: String): List<DataUI> {
         val serverData = repository.getData()
         val result = businessLogicHelper.doWork(serverData.toDomain())
         return result.toUI()

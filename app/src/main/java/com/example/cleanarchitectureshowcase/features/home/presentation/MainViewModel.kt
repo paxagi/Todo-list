@@ -6,6 +6,7 @@ import com.example.cleanarchitectureshowcase.features.home.domain.GetMockDataUse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,7 +14,7 @@ class MainViewModel @Inject constructor(
     private val getMockDataUsecase: GetMockDataUsecase
 ): ViewModel() {
 
-    private val _state = MutableStateFlow<DataUI?>(null)
+    private val _state = MutableStateFlow<List<DataUI>?>(null)
     val state = _state
 
     fun someProccess() {
