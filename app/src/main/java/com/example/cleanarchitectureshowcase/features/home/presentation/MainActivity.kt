@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         tasksRecyclerView = findViewById(R.id.tasks_recycler_view)
         taskNotExist = findViewById(R.id.task_not_exist)
 
-        val tasksList: List<DataUI>? = viewModel.state.value
-
-
         lifecycleScope.launch {
             viewModel.someProccess()
             viewModel.state.collectLatest {data ->

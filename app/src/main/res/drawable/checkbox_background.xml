@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <!-- Установите цвет фона для выделенного состояния -->
+                    <solid android:color="@color/black" />
+                    <!-- Установите радиус углов для выделенного состояния -->
+                    <corners android:radius="4dp" />
+                </shape>
+            </item>
+            <item android:gravity="center">
+                <!-- Укажите путь к изображению галочки -->
+                <bitmap android:src="@drawable/ic_eye" />
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_checked="false">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <!-- Установите цвет фона для невыделенного состояния -->
+                    <solid android:color="@color/white" />
+                    <!-- Установите радиус углов для невыделенного состояния -->
+                    <corners android:radius="4dp" />
+                </shape>
+            </item>
+            <item android:gravity="center">
+                <!-- Укажите путь к изображению пустой галочки -->
+                <bitmap android:src="@drawable/ic_eyeoff" />
+            </item>
+        </layer-list>
+    </item>
+</selector>
