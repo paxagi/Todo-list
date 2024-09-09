@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.CleanArchitectureShowcase" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/background_beige</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary" />
+        <item name="colorSecondaryVariant" />
+        <item name="colorOnSecondary" />
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background_beige</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.CleanArchitectureShowcase" parent="Base.Theme.CleanArchitectureShowcase" />

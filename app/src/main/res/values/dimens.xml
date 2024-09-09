@@ -6,4 +6,6 @@
     <dimen name="task_deadline_text_size">15sp</dimen>
     <dimen name="titleTextSize">16sp</dimen>
     <dimen name="task_item_padding">8dp</dimen>
+    <dimen name="header_padding_left">50dp</dimen>
+    <dimen name="header_padding_default">14dp</dimen>
 </resources>
