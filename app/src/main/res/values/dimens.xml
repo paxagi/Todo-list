@@ -8,4 +8,5 @@
     <dimen name="task_item_padding">8dp</dimen>
     <dimen name="header_padding_left">50dp</dimen>
     <dimen name="header_padding_default">14dp</dimen>
+    <dimen name="header_height">200dp</dimen>
 </resources>

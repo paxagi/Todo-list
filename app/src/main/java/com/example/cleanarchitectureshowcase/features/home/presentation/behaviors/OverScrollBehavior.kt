@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat
 import com.example.cleanarchitectureshowcase.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.properties.Delegates
 
 class OverScrollBehavior() : AppBarLayout.Behavior() {
@@ -20,8 +22,8 @@ class OverScrollBehavior() : AppBarLayout.Behavior() {
     private lateinit var targetView: View
     private lateinit var collapsingView: FrameLayout
     private var collapsedHeight by Delegates.notNull<Int>()
-    private var unCollapsedHeight: Int = 200
-    private var parentHeight: Int = 0
+    private var unCollapsedHeight: Int = 600
+    private var targetHeight: Int = 0
     private var actionBarSize: Int = 0
     private var totalDy: Int = 0
     private var lastBottom: Int = 0
@@ -70,10 +72,10 @@ class OverScrollBehavior() : AppBarLayout.Behavior() {
         consumed: IntArray,
         type: Int
     ) {
+        Log.d("animation", "onNestedPreScroll() dy=$dy")
         val ablBottom = child.bottom
-        Log.d("animation", "dy: $dy")
-        Log.d("animation", "$ablBottom to $collapsedHeight")
-        if ((dy < 0 && ablBottom >= parentHeight) || (dy > 0 && ablBottom > collapsedHeight)) {
+        Log.d("animation", "$ablBottom, $targetHeight, $collapsedHeight")
+        if ((dy < 0 &&  ablBottom < unCollapsedHeight) || (dy > 0 && ablBottom > collapsedHeight)) {
             resize(child, dy)
         }
 
@@ -81,22 +83,22 @@ class OverScrollBehavior() : AppBarLayout.Behavior() {
     }
 
     private fun resize(abl: AppBarLayout, dy: Int) {
+        Log.d("animation", "resize()")
         if (isStoped) return
         totalDy += -dy
-//        totalDy = min(totalDy, targetHeight)
-        lastBottom = parentHeight + totalDy
-        Log.d("animation", "onNestedPreScroll totalDy: $totalDy")
-        Log.d("animation", "onNestedPreScroll lastbottom: $lastBottom")
+        lastBottom = min(targetHeight + totalDy, unCollapsedHeight)
+        lastBottom = max(lastBottom, collapsedHeight)
+        Log.d("animation", "height: $lastBottom, tDY: $totalDy")
         abl.bottom = lastBottom
         collapsingView.bottom = lastBottom
-        Log.d("animation", "bottoms: ${abl.bottom}, ${collapsingView.bottom}")
     }
 
     private fun restore(abl: AppBarLayout) {
+        Log.d("animation", "restore()")
         if (totalDy > 0) {
             totalDy = 0
-            val anim = ValueAnimator.ofInt(lastBottom, actionBarSize)
-            anim.duration = 1000
+            val anim = ValueAnimator.ofInt(lastBottom, targetHeight)
+            anim.duration = 500
             anim.addUpdateListener {
                 val bottomValue = it.animatedValue as Int
                 abl.bottom = bottomValue
@@ -109,9 +111,9 @@ class OverScrollBehavior() : AppBarLayout.Behavior() {
     private fun initialize(abl: AppBarLayout) {
         targetView = abl.findViewById(R.id.collapsing_toolbar)
         collapsingView = abl.getChildAt(0) as CollapsingToolbarLayout
-        parentHeight = abl.height
         actionBarSize = getActionBarSize(abl.context)
-        collapsedHeight = actionBarSize
+        collapsedHeight = abl.height
+        targetHeight = collapsedHeight
     }
 
     private fun getActionBarSize(context: Context): Int {
