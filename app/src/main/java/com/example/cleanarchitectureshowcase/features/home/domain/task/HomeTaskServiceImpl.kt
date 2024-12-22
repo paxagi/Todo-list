@@ -5,8 +5,8 @@ import javax.inject.Inject
 class HomeTaskServiceImpl @Inject constructor(
     private val repository: TasksRepository
 ) : HomeTaskService {
-    override suspend fun add(task: DataTask): DataTask {
-        return repository.setTask(task.toDTO()).toDomain()
+    override suspend fun add(task: DataTask) {
+        repository.setTask(task.toDTO())
     }
 
     override suspend fun getTaskList(): List<DataTask> {
@@ -16,12 +16,12 @@ class HomeTaskServiceImpl @Inject constructor(
         }
     }
 
-    override suspend fun setStatus(task: DataTask, isComplete: Boolean): DataTask {
-        return update(task.copy(isComplete = isComplete))
+    override suspend fun setStatus(task: DataTask, isComplete: Boolean) {
+        update(task.copy(isComplete = isComplete))
     }
 
-    override suspend fun update(task: DataTask): DataTask {
-        return repository.updateTask(task.toDTO()).toDomain()
+    override suspend fun update(task: DataTask) {
+        return repository.updateTask(task.toDTO())
     }
 
     override suspend fun delete(task: DataTask) {
