@@ -5,6 +5,8 @@ import com.example.cleanarchitectureshowcase.features.home.data.ServerDataApi
 import com.example.cleanarchitectureshowcase.features.home.domain.BusinessLogicHelper
 import com.example.cleanarchitectureshowcase.features.home.domain.BusinessLogicHelperImpl
 import com.example.cleanarchitectureshowcase.features.home.domain.DataRepository
+import com.example.cleanarchitectureshowcase.features.home.domain.task.TasksRepositoryImpl
+import com.example.cleanarchitectureshowcase.features.home.domain.task.TasksRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +31,12 @@ object AppModule {
     @Singleton
     fun provideDataRepository(api: ServerDataApi): DataRepository {
         return DataRepositoryImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTaskRepository(): TasksRepository {
+        return TasksRepositoryImpl()
     }
 
     @Provides
